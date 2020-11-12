@@ -1,0 +1,14 @@
+syntax = "proto3";  //指定语法格式，注意 proto3 不再支持 proto2 的 required  和 optinal
+package proto;  //指定生成的 user.pb.go 的包名字；
+
+//MessageTransfer 消息传输
+service MessageTransfer {
+    // Sends a greeting
+    rpc Send (Message) returns (Message) {}
+    rpc Receive(Message)returns (Message) {}
+}
+
+// The request message containing the user's name.
+message Message {
+    string message = 1;
+}
