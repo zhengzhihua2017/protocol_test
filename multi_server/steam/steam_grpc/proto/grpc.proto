@@ -1,0 +1,25 @@
+syntax = "proto3";  //指定语法格式，注意 proto3 不再支持 proto2 的 required  和 optinal
+package proto;  //指定生成的 user.pb.go 的包名字；
+
+//StreamService 
+service StreamService {
+    rpc Connect(stream ClientInfo) returns (stream Message) {}
+}
+
+
+message ClientInfo {
+    int32 serverID = 1;
+    OperationType operationType = 2;
+    string message = 3;
+}
+
+//OperationType 操作类型
+enum OperationType {
+    LOGIN = 0;
+    CHAT = 1;
+}
+
+// The request message containing the user's name.
+message Message {
+    string message = 1;
+}
